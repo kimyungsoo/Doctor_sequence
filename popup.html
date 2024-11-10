@@ -6,7 +6,7 @@
   <title>진료 체어 관리</title>
   <style>
     .nextChairsList {
-      display: inline;
+      display: inline; /* 한 줄로 표시 */
       list-style: none;
       padding: 0;
       margin: 0;
@@ -14,94 +14,54 @@
     .nextChairsList li {
       display: inline;
       margin-right: 10px;
+      color: red; /* 다음 진료할 체어는 빨간색 */
     }
-    .chair-buttons {
-      margin-top: 10px;
+    .current-chair {
+      color: blue; /* 현재 진료 중인 체어는 파란색 */
+      font-weight: bold;
     }
   </style>
 </head>
 <body>
-  <h1>진료 체어 관리 시스템</h1>
+  <h2>진료 체어 관리 시스템</h2>
 
   <!-- 의사 1 -->
   <div>
-    <h2>김영수 원장님</h2>
-    <p>현재 진료 중인 체어: <span id="currentChair1">선택되지 않음</span>
+    <h3>김영수</h3>
+    <p>현재 진료 중인 체어: <span id="currentChair1" class="current-chair">선택되지 않음</span>
       <button onclick="endCurrentChair('doctor1')">진료 종료</button>
     </p>
-    <p>다음 진료할 체어:
-      <ul id="nextChairsList1" class="nextChairsList">
-        <li id="nextChair1_1">비어 있음</li>
-        <li id="nextChair1_2">비어 있음</li>
-        <li id="nextChair1_3">비어 있음</li>
-      </ul>
-    </p>
-    <div class="chair-buttons">
-      <button onclick="selectChair('doctor1', '1번')">1번</button>
-      <button onclick="selectChair('doctor1', '2번')">2번</button>
-      <button onclick="selectChair('doctor1', '3번')">3번</button>
-      <button onclick="selectChair('doctor1', '4번')">4번</button>
-      <button onclick="selectChair('doctor1', '5번')">5번</button>
-      <button onclick="selectChair('doctor1', '6번')">6번</button>
-      <button onclick="selectChair('doctor1', '7번')">7번</button>
-      <button onclick="selectChair('doctor1', '8번')">8번</button>
-      <button onclick="selectChair('doctor1', '임플_1')">임플_1</button>
-      <button onclick="selectChair('doctor1', '임플_2')">임플_2</button>
-    </div>
+    <p>다음 진료할 체어: <ul id="nextChairsList1" class="nextChairsList">
+      <li id="nextChair1_1">비어 있음</li>
+      <li id="nextChair1_2">비어 있음</li>
+      <li id="nextChair1_3">비어 있음</li>
+    </ul></p>
   </div>
 
   <!-- 의사 2 -->
   <div>
-    <h2>태양열 원장님</h2>
-    <p>현재 진료 중인 체어: <span id="currentChair2">선택되지 않음</span>
+    <h3>태양열</h3>
+    <p>현재 진료 중인 체어: <span id="currentChair2" class="current-chair">선택되지 않음</span>
       <button onclick="endCurrentChair('doctor2')">진료 종료</button>
     </p>
-    <p>다음 진료할 체어:
-      <ul id="nextChairsList2" class="nextChairsList">
-        <li id="nextChair2_1">비어 있음</li>
-        <li id="nextChair2_2">비어 있음</li>
-        <li id="nextChair2_3">비어 있음</li>
-      </ul>
-    </p>
-    <div class="chair-buttons">
-      <button onclick="selectChair('doctor2', '1번')">1번</button>
-      <button onclick="selectChair('doctor2', '2번')">2번</button>
-      <button onclick="selectChair('doctor2', '3번')">3번</button>
-      <button onclick="selectChair('doctor2', '4번')">4번</button>
-      <button onclick="selectChair('doctor2', '5번')">5번</button>
-      <button onclick="selectChair('doctor2', '6번')">6번</button>
-      <button onclick="selectChair('doctor2', '7번')">7번</button>
-      <button onclick="selectChair('doctor2', '8번')">8번</button>
-      <button onclick="selectChair('doctor2', '임플_1')">임플_1</button>
-      <button onclick="selectChair('doctor2', '임플_2')">임플_2</button>
-    </div>
+    <p>다음 진료할 체어: <ul id="nextChairsList2" class="nextChairsList">
+      <li id="nextChair2_1">비어 있음</li>
+      <li id="nextChair2_2">비어 있음</li>
+      <li id="nextChair2_3">비어 있음</li>
+    </ul></p>
   </div>
 
   <!-- 의사 3 -->
   <div>
-    <h2>신수정 원장님</h2>
-    <p>현재 진료 중인 체어: <span id="currentChair3">선택되지 않음</span>
+    <h3>신수정</h3>
+    <p>현재 진료 중인 체어: <span id="currentChair3" class="current-chair">선택되지 않음</span>
       <button onclick="endCurrentChair('doctor3')">진료 종료</button>
     </p>
-    <p>다음 진료할 체어:
-      <ul id="nextChairsList3" class="nextChairsList">
-        <li id="nextChair3_1">비어 있음</li>
-        <li id="nextChair3_2">비어 있음</li>
-        <li id="nextChair3_3">비어 있음</li>
-      </ul>
-    </p>
-    <div class="chair-buttons">
-      <button onclick="selectChair('doctor3', '1번')">1번</button>
-      <button onclick="selectChair('doctor3', '2번')">2번</button>
-      <button onclick="selectChair('doctor3', '3번')">3번</button>
-      <button onclick="selectChair('doctor3', '4번')">4번</button>
-      <button onclick="selectChair('doctor3', '5번')">5번</button>
-      <button onclick="selectChair('doctor3', '6번')">6번</button>
-      <button onclick="selectChair('doctor3', '7번')">7번</button>
-      <button onclick="selectChair('doctor3', '8번')">8번</button>
-      <button onclick="selectChair('doctor3', '임플_1')">임플_1</button>
-      <button onclick="selectChair('doctor3', '임플_2')">임플_2</button>
-    </div>
+    <p>다음 진료할 체어: <ul id="nextChairsList3" class="nextChairsList">
+      <li id="nextChair3_1">비어 있음</li>
+      <li id="nextChair3_2">비어 있음</li>
+      <li id="nextChair3_3">비어 있음</li>
+    </ul></p>
   </div>
 
   <script>
@@ -120,9 +80,14 @@
           document.getElementById(`nextChair${index + 1}_3`)
         ];
 
+        // 현재 진료 중인 체어 업데이트 (파란색)
         currentChairElement.textContent = doctors[doctor].currentChair;
+        currentChairElement.style.color = 'blue';
+
+        // 다음 진료할 체어 업데이트 (빨간색)
         nextChairsElements.forEach((element, i) => {
           element.textContent = doctors[doctor].nextChairs[i] || '비어 있음';
+          element.style.color = 'red';
         });
       });
     };
