@@ -6,14 +6,10 @@
   <title>진료 체어 관리</title>
   <style>
     .nextChairsList {
-      display: inline-block; /* 한 줄로 표시되도록 설정 */
-      list-style: none;
-      padding: 0;
-      margin: 0;
-      color: red; /* 다음 진료할 체어는 빨간색 */
+      display: inline; /* 한 줄로 표시되도록 설정 */
     }
-    .nextChairsList li {
-      display: inline;
+    .nextChair {
+      color: red; /* 다음 진료할 체어는 빨간색 */
       margin-right: 10px;
     }
     .current-chair {
@@ -30,12 +26,15 @@
 
   <!-- 의사 1 -->
   <div>
-    <h2>김영수</h2>
+    <h2>의사 1</h2>
     <p>현재 진료 중인 체어: <span id="currentChair1" class="current-chair">선택되지 않음</span>
       <button onclick="endCurrentChair('doctor1')">진료 종료</button>
     </p>
-    <p>다음 진료할 체어: <ul id="nextChairsList1" class="nextChairsList"> <li id="nextChair1_1">비어 있음</li> <li id="nextChair1_2">비어 있음</li> <li id="nextChair1_3">비어 있음</li>
-    </ul></p>
+    <p>다음 진료할 체어: <span id="nextChairsList1" class="nextChairsList">
+      <span id="nextChair1_1" class="nextChair">비어 있음</span>
+      <span id="nextChair1_2" class="nextChair">비어 있음</span>
+      <span id="nextChair1_3" class="nextChair">비어 있음</span>
+    </span></p>
     <div class="chair-buttons">
       <button onclick="selectChair('doctor1', '1번')">1번</button>
       <button onclick="selectChair('doctor1', '2번')">2번</button>
@@ -52,15 +51,15 @@
 
   <!-- 의사 2 -->
   <div>
-    <h2>태양열</h2>
+    <h2>의사 2</h2>
     <p>현재 진료 중인 체어: <span id="currentChair2" class="current-chair">선택되지 않음</span>
       <button onclick="endCurrentChair('doctor2')">진료 종료</button>
     </p>
-    <p>다음 진료할 체어: <ul id="nextChairsList2" class="nextChairsList">
-      <li id="nextChair2_1">비어 있음</li>
-      <li id="nextChair2_2">비어 있음</li>
-      <li id="nextChair2_3">비어 있음</li>
-    </ul></p>
+    <p>다음 진료할 체어: <span id="nextChairsList2" class="nextChairsList">
+      <span id="nextChair2_1" class="nextChair">비어 있음</span>
+      <span id="nextChair2_2" class="nextChair">비어 있음</span>
+      <span id="nextChair2_3" class="nextChair">비어 있음</span>
+    </span></p>
     <div class="chair-buttons">
       <button onclick="selectChair('doctor2', '1번')">1번</button>
       <button onclick="selectChair('doctor2', '2번')">2번</button>
@@ -77,15 +76,15 @@
 
   <!-- 의사 3 -->
   <div>
-    <h2>신수정</h2>
+    <h2>의사 3</h2>
     <p>현재 진료 중인 체어: <span id="currentChair3" class="current-chair">선택되지 않음</span>
       <button onclick="endCurrentChair('doctor3')">진료 종료</button>
     </p>
-    <p>다음 진료할 체어: <ul id="nextChairsList3" class="nextChairsList">
-      <li id="nextChair3_1">비어 있음</li>
-      <li id="nextChair3_2">비어 있음</li>
-      <li id="nextChair3_3">비어 있음</li>
-    </ul></p>
+    <p>다음 진료할 체어: <span id="nextChairsList3" class="nextChairsList">
+      <span id="nextChair3_1" class="nextChair">비어 있음</span>
+      <span id="nextChair3_2" class="nextChair">비어 있음</span>
+      <span id="nextChair3_3" class="nextChair">비어 있음</span>
+    </span></p>
     <div class="chair-buttons">
       <button onclick="selectChair('doctor3', '1번')">1번</button>
       <button onclick="selectChair('doctor3', '2번')">2번</button>
