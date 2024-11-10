@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>진료 체어 관리</title>
   <style>
-    /* 한 줄로 표시하기 위한 스타일 */
     .nextChairsList {
       display: inline;
       list-style: none;
@@ -15,6 +14,9 @@
     .nextChairsList li {
       display: inline;
       margin-right: 10px;
+    }
+    .chair-buttons {
+      margin-top: 10px;
     }
   </style>
 </head>
@@ -27,11 +29,18 @@
     <p>현재 진료 중인 체어: <span id="currentChair1">선택되지 않음</span>
       <button onclick="endCurrentChair('doctor1')">진료 종료</button>
     </p>
-    <p>다음 진료할 체어: <ul id="nextChairsList1" class="nextChairsList">
-      <li id="nextChair1_1">비어 있음</li>
-      <li id="nextChair1_2">비어 있음</li>
-      <li id="nextChair1_3">비어 있음</li>
-    </ul></p>
+    <p>다음 진료할 체어: 
+      <ul id="nextChairsList1" class="nextChairsList">
+        <li id="nextChair1_1">비어 있음</li>
+        <li id="nextChair1_2">비어 있음</li>
+        <li id="nextChair1_3">비어 있음</li>
+      </ul>
+    </p>
+    <div class="chair-buttons">
+      <button onclick="selectChair('doctor1', '1번')">1번</button>
+      <button onclick="selectChair('doctor1', '2번')">2번</button>
+      <button onclick="selectChair('doctor1', '3번')">3번</button>
+    </div>
   </div>
 
   <!-- 의사 2 -->
@@ -40,11 +49,18 @@
     <p>현재 진료 중인 체어: <span id="currentChair2">선택되지 않음</span>
       <button onclick="endCurrentChair('doctor2')">진료 종료</button>
     </p>
-    <p>다음 진료할 체어: <ul id="nextChairsList2" class="nextChairsList">
-      <li id="nextChair2_1">비어 있음</li>
-      <li id="nextChair2_2">비어 있음</li>
-      <li id="nextChair2_3">비어 있음</li>
-    </ul></p>
+    <p>다음 진료할 체어: 
+      <ul id="nextChairsList2" class="nextChairsList">
+        <li id="nextChair2_1">비어 있음</li>
+        <li id="nextChair2_2">비어 있음</li>
+        <li id="nextChair2_3">비어 있음</li>
+      </ul>
+    </p>
+    <div class="chair-buttons">
+      <button onclick="selectChair('doctor2', '1번')">1번</button>
+      <button onclick="selectChair('doctor2', '2번')">2번</button>
+      <button onclick="selectChair('doctor2', '3번')">3번</button>
+    </div>
   </div>
 
   <!-- 의사 3 -->
@@ -53,30 +69,22 @@
     <p>현재 진료 중인 체어: <span id="currentChair3">선택되지 않음</span>
       <button onclick="endCurrentChair('doctor3')">진료 종료</button>
     </p>
-    <p>다음 진료할 체어: <ul id="nextChairsList3" class="nextChairsList">
-      <li id="nextChair3_1">비어 있음</li>
-      <li id="nextChair3_2">비어 있음</li>
-      <li id="nextChair3_3">비어 있음</li>
-    </ul></p>
+    <p>다음 진료할 체어: 
+      <ul id="nextChairsList3" class="nextChairsList">
+        <li id="nextChair3_1">비어 있음</li>
+        <li id="nextChair3_2">비어 있음</li>
+        <li id="nextChair3_3">비어 있음</li>
+      </ul>
+    </p>
+    <div class="chair-buttons">
+      <button onclick="selectChair('doctor3', '1번')">1번</button>
+      <button onclick="selectChair('doctor3', '2번')">2번</button>
+      <button onclick="selectChair('doctor3', '3번')">3번</button>
+    </div>
   </div>
-
-  <!-- 체어 선택 버튼 -->
-  <h3>체어 선택</h3>
-  <button onclick="selectChair('1번')">1번</button>
-  <button onclick="selectChair('2번')">2번</button>
-  <button onclick="selectChair('3번')">3번</button>
-  <button onclick="selectChair('4번')">4번</button>
-  <button onclick="selectChair('5번')">5번</button>
-  <button onclick="selectChair('6번')">6번</button>
-  <button onclick="selectChair('7번')">7번</button>
-  <button onclick="selectChair('8번')">8번</button>
-  <button onclick="selectChair('임플란트실_1')">임플란트실_1</button>
-  <button onclick="selectChair('임플란트실_2')">임플란트실_2</button>
 
   <script>
     const ws = new WebSocket('wss://doctor-sequence.onrender.com');
-
-    let selectedDoctor = 'doctor1'; // 기본 선택된 의사
 
     // 서버에서 상태 업데이트 수신
     ws.onmessage = (event) => {
@@ -94,17 +102,17 @@
 
         currentChairElement.textContent = doctors[doctor].currentChair;
         nextChairsElements.forEach((element, i) => {
-          element.textContent = doctors[doctor].nextChairs[i];
+          element.textContent = doctors[doctor].nextChairs[i] || '비어 있음';
         });
       });
     };
 
-    // 의사별 체어 선택 요청
-    function selectChair(chairName) {
-      ws.send(JSON.stringify({ doctor: selectedDoctor, action: 'selectChair', chair: chairName }));
+    // 체어 선택 함수
+    function selectChair(doctor, chairName) {
+      ws.send(JSON.stringify({ doctor, action: 'selectChair', chair: chairName }));
     }
 
-    // 의사별 진료 종료 요청
+    // 진료 종료 함수
     function endCurrentChair(doctor) {
       ws.send(JSON.stringify({ doctor, action: 'endCurrentChair' }));
     }
