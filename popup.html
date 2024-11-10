@@ -20,6 +20,9 @@
       color: blue; /* 현재 진료 중인 체어는 파란색 */
       font-weight: bold;
     }
+    .chair-buttons {
+      margin-top: 10px;
+    }
   </style>
 </head>
 <body>
@@ -36,6 +39,18 @@
       <li id="nextChair1_2">비어 있음</li>
       <li id="nextChair1_3">비어 있음</li>
     </ul></p>
+    <div class="chair-buttons">
+      <button onclick="selectChair('doctor1', '1번')">1번</button>
+      <button onclick="selectChair('doctor1', '2번')">2번</button>
+      <button onclick="selectChair('doctor1', '3번')">3번</button>
+      <button onclick="selectChair('doctor1', '4번')">4번</button>
+      <button onclick="selectChair('doctor1', '5번')">5번</button>
+      <button onclick="selectChair('doctor1', '6번')">6번</button>
+      <button onclick="selectChair('doctor1', '7번')">7번</button>
+      <button onclick="selectChair('doctor1', '8번')">8번</button>
+      <button onclick="selectChair('doctor1', '임플_1')">임플_1</button>
+      <button onclick="selectChair('doctor1', '임플_2')">임플_2</button>
+    </div>
   </div>
 
   <!-- 의사 2 -->
@@ -49,6 +64,18 @@
       <li id="nextChair2_2">비어 있음</li>
       <li id="nextChair2_3">비어 있음</li>
     </ul></p>
+    <div class="chair-buttons">
+      <button onclick="selectChair('doctor2', '1번')">1번</button>
+      <button onclick="selectChair('doctor2', '2번')">2번</button>
+      <button onclick="selectChair('doctor2', '3번')">3번</button>
+      <button onclick="selectChair('doctor2', '4번')">4번</button>
+      <button onclick="selectChair('doctor2', '5번')">5번</button>
+      <button onclick="selectChair('doctor2', '6번')">6번</button>
+      <button onclick="selectChair('doctor2', '7번')">7번</button>
+      <button onclick="selectChair('doctor2', '8번')">8번</button>
+      <button onclick="selectChair('doctor2', '임플_1')">임플_1</button>
+      <button onclick="selectChair('doctor2', '임플_2')">임플_2</button>
+    </div>
   </div>
 
   <!-- 의사 3 -->
@@ -62,12 +89,23 @@
       <li id="nextChair3_2">비어 있음</li>
       <li id="nextChair3_3">비어 있음</li>
     </ul></p>
+    <div class="chair-buttons">
+      <button onclick="selectChair('doctor3', '1번')">1번</button>
+      <button onclick="selectChair('doctor3', '2번')">2번</button>
+      <button onclick="selectChair('doctor3', '3번')">3번</button>
+      <button onclick="selectChair('doctor3', '4번')">4번</button>
+      <button onclick="selectChair('doctor3', '5번')">5번</button>
+      <button onclick="selectChair('doctor3', '6번')">6번</button>
+      <button onclick="selectChair('doctor3', '7번')">7번</button>
+      <button onclick="selectChair('doctor3', '8번')">8번</button>
+      <button onclick="selectChair('doctor3', '임플_1')">임플_1</button>
+      <button onclick="selectChair('doctor3', '임플_2')">임플_2</button>
+    </div>
   </div>
 
   <script>
     const ws = new WebSocket('wss://doctor-sequence.onrender.com');
 
-    // 서버에서 상태 업데이트 수신
     ws.onmessage = (event) => {
       const data = JSON.parse(event.data);
       const doctors = data.doctors;
@@ -80,11 +118,9 @@
           document.getElementById(`nextChair${index + 1}_3`)
         ];
 
-        // 현재 진료 중인 체어 업데이트 (파란색)
         currentChairElement.textContent = doctors[doctor].currentChair;
         currentChairElement.style.color = 'blue';
 
-        // 다음 진료할 체어 업데이트 (빨간색)
         nextChairsElements.forEach((element, i) => {
           element.textContent = doctors[doctor].nextChairs[i] || '비어 있음';
           element.style.color = 'red';
@@ -92,12 +128,10 @@
       });
     };
 
-    // 체어 선택 함수
     function selectChair(doctor, chairName) {
       ws.send(JSON.stringify({ doctor, action: 'selectChair', chair: chairName }));
     }
 
-    // 진료 종료 함수
     function endCurrentChair(doctor) {
       ws.send(JSON.stringify({ doctor, action: 'endCurrentChair' }));
     }
